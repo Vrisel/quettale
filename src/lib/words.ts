@@ -17,11 +17,12 @@ export const getWordOfDay = () => {
   const epochMs = new Date('January 1, 2022 00:00:00').valueOf();
   const now = Date.now();
   const msInDay = 86400000;
-  const index = Math.floor((now - epochMs) / msInDay);
-  const nextday = (index + 1) * msInDay + epochMs;
-  // console.log(WORDS[index % WORDS.length].toLocaleUpperCase());
+  const dayNumber = Math.floor((now - epochMs) / msInDay);
+  const index = (dayNumber * (19730902 / 2)) % WORDS.length; // RIP Tolkien
+  const nextday = (dayNumber + 1) * msInDay + epochMs;
+
   return {
-    solution: WORDS[index % WORDS.length].toLocaleUpperCase(),
+    solution: WORDS[index].toLocaleUpperCase(),
     solutionIndex: index,
     tomorrow: nextday,
   };
