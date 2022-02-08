@@ -19,6 +19,7 @@ import {
   NOT_ENOUGH_LETTERS_MESSAGE,
   WORD_NOT_FOUND_MESSAGE,
   CORRECT_WORD_MESSAGE,
+  UNUSED_LETTER_MESSAGE,
 } from './constants/strings';
 import {
   MAX_WORD_LENGTH,
@@ -47,6 +48,7 @@ function App() {
   const [isNotEnoughLetters, setIsNotEnoughLetters] = useState(false);
   const [isStatsModalOpen, setIsStatsModalOpen] = useState(false);
   const [isWordNotFoundAlertOpen, setIsWordNotFoundAlertOpen] = useState(false);
+  const [isLetterUnusedAlertOpen, setIsLetterUnusedAlertOpen] = useState(false);
   const [isGameLost, setIsGameLost] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(
     localStorage.getItem('theme')
@@ -113,11 +115,33 @@ function App() {
 
   const onChar = (value: string) => {
     if (
-      currentGuess.length < MAX_WORD_LENGTH &&
+      currentGuess.length <= MAX_WORD_LENGTH &&
       guesses.length < MAX_CHALLENGES &&
       !isGameWon
     ) {
-      setCurrentGuess(`${currentGuess}${value}`);
+      const longVowel: { [index: string]: string } = {
+        A: 'Á',
+        E: 'É',
+        I: 'Í',
+        O: 'Ó',
+        U: 'Ú',
+      };
+      if (value in longVowel && currentGuess.slice(-1) === value) {
+        setCurrentGuess(`${currentGuess.slice(0, -1)}${longVowel[value]}`);
+      } else if (currentGuess.slice(-1) === 'C' && value === 'S') {
+        setCurrentGuess(`${currentGuess.slice(0, -1)}X`);
+      } else if (currentGuess.slice(-1) === 'C' && value === 'W') {
+        setCurrentGuess(`${currentGuess.slice(0, -1)}QU`);
+      } else if (currentGuess.length < MAX_WORD_LENGTH) {
+        if (['J', 'Z'].includes(value)) {
+          setIsLetterUnusedAlertOpen(true);
+          return setTimeout(() => {
+            setIsLetterUnusedAlertOpen(false);
+          }, ALERT_TIME_MS);
+        } else {
+          setCurrentGuess(`${currentGuess}${value === 'K' ? 'C' : value}`);
+        }
+      }
     }
   };
 
@@ -240,6 +264,7 @@ function App() {
       </button>
 
       <Alert message={NOT_ENOUGH_LETTERS_MESSAGE} isOpen={isNotEnoughLetters} />
+      <Alert message={UNUSED_LETTER_MESSAGE} isOpen={isLetterUnusedAlertOpen} />
       <Alert
         message={WORD_NOT_FOUND_MESSAGE}
         isOpen={isWordNotFoundAlertOpen}
