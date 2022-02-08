@@ -1,9 +1,9 @@
-import { BaseModal } from './BaseModal'
+import { BaseModal } from './BaseModal';
 
 type Props = {
-  isOpen: boolean
-  handleClose: () => void
-}
+  isOpen: boolean;
+  handleClose: () => void;
+};
 
 export const AboutModal = ({ isOpen, handleClose }: Props) => {
   return (
@@ -19,5 +19,5 @@ export const AboutModal = ({ isOpen, handleClose }: Props) => {
         </a>{' '}
       </p>
     </BaseModal>
-  )
-}
+  );
+};

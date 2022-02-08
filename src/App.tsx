@@ -3,14 +3,14 @@ import {
   ChartBarIcon,
   SunIcon,
   MoonIcon,
-} from '@heroicons/react/outline'
-import { useState, useEffect } from 'react'
-import { Alert } from './components/alerts/Alert'
-import { Grid } from './components/grid/Grid'
-import { Keyboard } from './components/keyboard/Keyboard'
-import { AboutModal } from './components/modals/AboutModal'
-import { InfoModal } from './components/modals/InfoModal'
-import { StatsModal } from './components/modals/StatsModal'
+} from '@heroicons/react/outline';
+import { useState, useEffect } from 'react';
+import { Alert } from './components/alerts/Alert';
+import { Grid } from './components/grid/Grid';
+import { Keyboard } from './components/keyboard/Keyboard';
+import { AboutModal } from './components/modals/AboutModal';
+import { InfoModal } from './components/modals/InfoModal';
+import { StatsModal } from './components/modals/StatsModal';
 import {
   GAME_TITLE,
   WIN_MESSAGES,
@@ -19,97 +19,97 @@ import {
   NOT_ENOUGH_LETTERS_MESSAGE,
   WORD_NOT_FOUND_MESSAGE,
   CORRECT_WORD_MESSAGE,
-} from './constants/strings'
+} from './constants/strings';
 import {
   MAX_WORD_LENGTH,
   MAX_CHALLENGES,
   ALERT_TIME_MS,
   REVEAL_TIME_MS,
-} from './constants/settings'
-import { isWordInWordList, isWinningWord, solution } from './lib/words'
-import { addStatsForCompletedGame, loadStats } from './lib/stats'
+} from './constants/settings';
+import { isWordInWordList, isWinningWord, solution } from './lib/words';
+import { addStatsForCompletedGame, loadStats } from './lib/stats';
 import {
   loadGameStateFromLocalStorage,
   saveGameStateToLocalStorage,
-} from './lib/localStorage'
+} from './lib/localStorage';
 
-import './App.css'
+import './App.css';
 
 function App() {
   const prefersDarkMode = window.matchMedia(
     '(prefers-color-scheme: dark)'
-  ).matches
+  ).matches;
 
-  const [currentGuess, setCurrentGuess] = useState('')
-  const [isGameWon, setIsGameWon] = useState(false)
-  const [isInfoModalOpen, setIsInfoModalOpen] = useState(false)
-  const [isAboutModalOpen, setIsAboutModalOpen] = useState(false)
-  const [isNotEnoughLetters, setIsNotEnoughLetters] = useState(false)
-  const [isStatsModalOpen, setIsStatsModalOpen] = useState(false)
-  const [isWordNotFoundAlertOpen, setIsWordNotFoundAlertOpen] = useState(false)
-  const [isGameLost, setIsGameLost] = useState(false)
+  const [currentGuess, setCurrentGuess] = useState('');
+  const [isGameWon, setIsGameWon] = useState(false);
+  const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
+  const [isAboutModalOpen, setIsAboutModalOpen] = useState(false);
+  const [isNotEnoughLetters, setIsNotEnoughLetters] = useState(false);
+  const [isStatsModalOpen, setIsStatsModalOpen] = useState(false);
+  const [isWordNotFoundAlertOpen, setIsWordNotFoundAlertOpen] = useState(false);
+  const [isGameLost, setIsGameLost] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(
     localStorage.getItem('theme')
       ? localStorage.getItem('theme') === 'dark'
       : prefersDarkMode
       ? true
       : false
-  )
-  const [successAlert, setSuccessAlert] = useState('')
-  const [isRevealing, setIsRevealing] = useState(false)
+  );
+  const [successAlert, setSuccessAlert] = useState('');
+  const [isRevealing, setIsRevealing] = useState(false);
   const [guesses, setGuesses] = useState<string[]>(() => {
-    const loaded = loadGameStateFromLocalStorage()
+    const loaded = loadGameStateFromLocalStorage();
     if (loaded?.solution !== solution) {
-      return []
+      return [];
     }
-    const gameWasWon = loaded.guesses.includes(solution)
+    const gameWasWon = loaded.guesses.includes(solution);
     if (gameWasWon) {
-      setIsGameWon(true)
+      setIsGameWon(true);
     }
     if (loaded.guesses.length === MAX_CHALLENGES && !gameWasWon) {
-      setIsGameLost(true)
+      setIsGameLost(true);
     }
-    return loaded.guesses
-  })
+    return loaded.guesses;
+  });
 
-  const [stats, setStats] = useState(() => loadStats())
+  const [stats, setStats] = useState(() => loadStats());
 
   useEffect(() => {
     if (isDarkMode) {
-      document.documentElement.classList.add('dark')
+      document.documentElement.classList.add('dark');
     } else {
-      document.documentElement.classList.remove('dark')
+      document.documentElement.classList.remove('dark');
     }
-  }, [isDarkMode])
+  }, [isDarkMode]);
 
   const handleDarkMode = (isDark: boolean) => {
-    setIsDarkMode(isDark)
-    localStorage.setItem('theme', isDark ? 'dark' : 'light')
-  }
+    setIsDarkMode(isDark);
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  };
 
   useEffect(() => {
-    saveGameStateToLocalStorage({ guesses, solution })
-  }, [guesses])
+    saveGameStateToLocalStorage({ guesses, solution });
+  }, [guesses]);
 
   useEffect(() => {
     if (isGameWon) {
       setTimeout(() => {
         setSuccessAlert(
           WIN_MESSAGES[Math.floor(Math.random() * WIN_MESSAGES.length)]
-        )
+        );
 
         setTimeout(() => {
-          setSuccessAlert('')
-          setIsStatsModalOpen(true)
-        }, ALERT_TIME_MS)
-      }, REVEAL_TIME_MS * MAX_WORD_LENGTH)
+          setSuccessAlert('');
+          setIsStatsModalOpen(true);
+        }, ALERT_TIME_MS);
+      }, REVEAL_TIME_MS * MAX_WORD_LENGTH);
     }
     if (isGameLost) {
       setTimeout(() => {
-        setIsStatsModalOpen(true)
-      }, ALERT_TIME_MS)
+        setIsStatsModalOpen(true);
+      }, ALERT_TIME_MS);
     }
-  }, [isGameWon, isGameLost])
+  }, [isGameWon, isGameLost]);
 
   const onChar = (value: string) => {
     if (
@@ -117,60 +117,60 @@ function App() {
       guesses.length < MAX_CHALLENGES &&
       !isGameWon
     ) {
-      setCurrentGuess(`${currentGuess}${value}`)
+      setCurrentGuess(`${currentGuess}${value}`);
     }
-  }
+  };
 
   const onDelete = () => {
-    setCurrentGuess(currentGuess.slice(0, -1))
-  }
+    setCurrentGuess(currentGuess.slice(0, -1));
+  };
 
   const onEnter = () => {
     if (isGameWon || isGameLost) {
-      return
+      return;
     }
     if (!(currentGuess.length === MAX_WORD_LENGTH)) {
-      setIsNotEnoughLetters(true)
+      setIsNotEnoughLetters(true);
       return setTimeout(() => {
-        setIsNotEnoughLetters(false)
-      }, ALERT_TIME_MS)
+        setIsNotEnoughLetters(false);
+      }, ALERT_TIME_MS);
     }
 
     if (!isWordInWordList(currentGuess)) {
-      setIsWordNotFoundAlertOpen(true)
+      setIsWordNotFoundAlertOpen(true);
       return setTimeout(() => {
-        setIsWordNotFoundAlertOpen(false)
-      }, ALERT_TIME_MS)
+        setIsWordNotFoundAlertOpen(false);
+      }, ALERT_TIME_MS);
     }
 
-    setIsRevealing(true)
+    setIsRevealing(true);
     // turn this back off after all
     // chars have been revealed
     setTimeout(() => {
-      setIsRevealing(false)
-    }, REVEAL_TIME_MS * MAX_WORD_LENGTH)
+      setIsRevealing(false);
+    }, REVEAL_TIME_MS * MAX_WORD_LENGTH);
 
-    const winningWord = isWinningWord(currentGuess)
+    const winningWord = isWinningWord(currentGuess);
 
     if (
       currentGuess.length === MAX_WORD_LENGTH &&
       guesses.length < MAX_CHALLENGES &&
       !isGameWon
     ) {
-      setGuesses([...guesses, currentGuess])
-      setCurrentGuess('')
+      setGuesses([...guesses, currentGuess]);
+      setCurrentGuess('');
 
       if (winningWord) {
-        setStats(addStatsForCompletedGame(stats, guesses.length))
-        return setIsGameWon(true)
+        setStats(addStatsForCompletedGame(stats, guesses.length));
+        return setIsGameWon(true);
       }
 
       if (guesses.length === MAX_CHALLENGES - 1) {
-        setStats(addStatsForCompletedGame(stats, guesses.length + 1))
-        setIsGameLost(true)
+        setStats(addStatsForCompletedGame(stats, guesses.length + 1));
+        setIsGameLost(true);
       }
     }
-  }
+  };
 
   return (
     <div className="pt-2 pb-8 max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -222,8 +222,8 @@ function App() {
         isGameLost={isGameLost}
         isGameWon={isGameWon}
         handleShare={() => {
-          setSuccessAlert(GAME_COPIED_MESSAGE)
-          return setTimeout(() => setSuccessAlert(''), ALERT_TIME_MS)
+          setSuccessAlert(GAME_COPIED_MESSAGE);
+          return setTimeout(() => setSuccessAlert(''), ALERT_TIME_MS);
         }}
       />
       <AboutModal
@@ -251,7 +251,7 @@ function App() {
         variant="success"
       />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
