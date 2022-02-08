@@ -10,6 +10,8 @@ export const saveGameStateToLocalStorage = (gameState: StoredGameState) => {
 };
 
 export const loadGameStateFromLocalStorage = () => {
+  if (process.env.NODE_ENV !== 'production') return null;
+
   const state = localStorage.getItem(gameStateKey);
   return state ? (JSON.parse(state) as StoredGameState) : null;
 };
