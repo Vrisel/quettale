@@ -147,6 +147,7 @@ export const IMPOSSIBLE_CLUSTER = [
   'tl',
   'tn',
   'tr',
+  'yi',
 ];
 
 export function wordValidation(word: string): boolean {
