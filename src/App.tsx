@@ -17,7 +17,7 @@ import {
   GAME_COPIED_MESSAGE,
   ABOUT_GAME_MESSAGE,
   NOT_ENOUGH_LETTERS_MESSAGE,
-  WORD_NOT_FOUND_MESSAGE,
+  WORD_NOT_VALID_MESSAGE,
   CORRECT_WORD_MESSAGE,
   UNUSED_LETTER_MESSAGE,
 } from './constants/strings';
@@ -27,7 +27,7 @@ import {
   ALERT_TIME_MS,
   REVEAL_TIME_MS,
 } from './constants/settings';
-import { isWordInWordList, isWinningWord, solution } from './lib/words';
+import { isWordValid, isWinningWord, solution } from './lib/words';
 import { addStatsForCompletedGame, loadStats } from './lib/stats';
 import {
   loadGameStateFromLocalStorage,
@@ -47,7 +47,7 @@ function App() {
   const [isAboutModalOpen, setIsAboutModalOpen] = useState(false);
   const [isNotEnoughLetters, setIsNotEnoughLetters] = useState(false);
   const [isStatsModalOpen, setIsStatsModalOpen] = useState(false);
-  const [isWordNotFoundAlertOpen, setIsWordNotFoundAlertOpen] = useState(false);
+  const [isWordNotValidAlertOpen, setIsWordNotValidAlertOpen] = useState(false);
   const [isLetterUnusedAlertOpen, setIsLetterUnusedAlertOpen] = useState(false);
   const [isGameLost, setIsGameLost] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(
@@ -160,10 +160,10 @@ function App() {
       }, ALERT_TIME_MS);
     }
 
-    if (!isWordInWordList(currentGuess)) {
-      setIsWordNotFoundAlertOpen(true);
+    if (!isWordValid(currentGuess)) {
+      setIsWordNotValidAlertOpen(true);
       return setTimeout(() => {
-        setIsWordNotFoundAlertOpen(false);
+        setIsWordNotValidAlertOpen(false);
       }, ALERT_TIME_MS);
     }
 
@@ -266,8 +266,8 @@ function App() {
       <Alert message={NOT_ENOUGH_LETTERS_MESSAGE} isOpen={isNotEnoughLetters} />
       <Alert message={UNUSED_LETTER_MESSAGE} isOpen={isLetterUnusedAlertOpen} />
       <Alert
-        message={WORD_NOT_FOUND_MESSAGE}
-        isOpen={isWordNotFoundAlertOpen}
+        message={WORD_NOT_VALID_MESSAGE}
+        isOpen={isWordNotValidAlertOpen}
       />
       <Alert message={CORRECT_WORD_MESSAGE(solution)} isOpen={isGameLost} />
       <Alert

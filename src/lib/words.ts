@@ -1,11 +1,12 @@
 import { WORDS } from '../constants/wordlist';
-import { VALID_GUESSES } from '../constants/validGuesses';
+import { wordValidation } from '../constants/quenyaRule';
 
 export const isWordInWordList = (word: string) => {
-  return (
-    WORDS.includes(word.toLocaleLowerCase()) ||
-    VALID_GUESSES.includes(word.toLocaleLowerCase())
-  );
+  return WORDS.includes(word.toLocaleLowerCase());
+};
+
+export const isWordValid = (word: string) => {
+  return wordValidation(word.toLocaleLowerCase());
 };
 
 export const isWinningWord = (word: string) => {

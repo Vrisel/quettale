@@ -23,11 +23,11 @@ export const VOWELS = [
   'ie',
   'io',
   'oa',
-  // 'oe', // exists in corpula but only as 'loëndë'
+  'oe', // exists in corpula but only as 'loëndë'
   'oia',
   'oio',
   'ua',
-  // 'uo', // exist in corpula but only as 'Eruo'
+  'uo', // exist in corpula but only as 'Eruo'
   'uio',
   'úa',
 ];
@@ -116,7 +116,14 @@ export const INITIAL_CONSONANTS = [
   'w',
 ];
 
-export const LAST_CONSONANTS = ['l', 'n', 'r', 's', 't'];
+export const LAST_CONSONANTS = [
+  'l',
+  'n',
+  'r',
+  's',
+  't',
+  'nt', // occurs grammatically only
+];
 
 export const IMPOSSIBLE_CLUSTER = [
   'ln',
@@ -141,3 +148,22 @@ export const IMPOSSIBLE_CLUSTER = [
   'tn',
   'tr',
 ];
+
+export function wordValidation(word: string): boolean {
+  const forInitCons = `^(?:${INITIAL_CONSONANTS.join('|')})?`;
+  const forVowels = `(?:${VOWELS.join('|')})`;
+  const forCons = `(?:${CONSONANTS.join('|')})`;
+  const forLastCons = `[${LAST_CONSONANTS.join('')}]?$`;
+  const isValid = new RegExp(
+    `${forInitCons}${forVowels}(?:${forCons}${forVowels})*${forLastCons}`
+  );
+  const hasInvalidCluster = new RegExp(`(?:${IMPOSSIBLE_CLUSTER.join('|')})`);
+  const hasClusterAfterLongVowel = new RegExp(
+    `[áéíóú](?:mb|ld|nd|rd|ng|x|[cfhlmnprstvw](?:[cfhlmnprstvw]|y))`
+  );
+  return (
+    isValid.test(word) &&
+    !hasInvalidCluster.test(word) &&
+    !hasClusterAfterLongVowel.test(word)
+  );
+}
