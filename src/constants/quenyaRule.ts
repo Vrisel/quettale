@@ -1,21 +1,21 @@
 export const VOWELS = [
   // single vowel and dipthong
   'a',
+  'e',
+  'i',
+  'o',
+  'u',
+  'á',
+  'é',
+  'í',
+  'ó',
+  'ú',
   'ai',
   'au',
-  'á',
-  'e',
   'eu',
-  'é',
-  'i',
   'iu',
-  'í',
-  'o',
   'oi',
-  'ó',
-  'u',
   'ui',
-  'ú',
   // combinations
   'aia',
   'ea',
@@ -36,7 +36,7 @@ export const CONSONANTS = [
   // single tengwa
   't',
   'nd',
-  's',
+  /* 'th', */
   'nt',
   'n',
   'r',
@@ -68,23 +68,27 @@ export const CONSONANTS = [
   'll',
   'mm',
   'rr',
-  // -s, -y
-  'ps',
-  'ts',
-  'x', // cs
+  // digraphs
   'hy',
+  'ly',
+  'my',
   'ny',
   'ry',
   'ty',
-  'ly',
-  // others
   'hr',
   'hl',
-  'lv',
-  'lm',
+  // -s
+  'ps',
+  'ts',
+  'x', // cs
+  // others
+  'ht',
   'lc',
+  'lm',
+  'lv',
   'lqu',
   'lt',
+  'mn',
   'pt',
   'rc',
   'rqu',
@@ -92,29 +96,29 @@ export const CONSONANTS = [
   'rm',
   'st',
   'ts',
-  'ht',
-  'mn',
 ];
 
 export const INITIAL_CONSONANTS = [
   'c',
   'f',
   'h',
-  'hl',
-  'hr',
-  'hy',
   'l',
   'm',
   'n',
-  'ny',
   'p',
-  'qu',
   'r',
   's',
   't',
-  'ty',
   'v',
   'w',
+  'nw',
+  'qu',
+  'hy',
+  'ly',
+  'ny',
+  'ty',
+  'hl',
+  'hr',
 ];
 
 export const LAST_CONSONANTS = [
@@ -127,15 +131,16 @@ export const LAST_CONSONANTS = [
 ];
 
 export const IMPOSSIBLE_CLUSTER = [
-  'ln',
-  'lr',
-  'ls',
-  'ns',
-  'nr',
-  'nm',
-  'np',
-  'rl',
-  'sf',
+  'ct', // ht
+  'ln', // ld
+  'lr', // ll
+  'ls', // ld
+  'ns', // ss
+  'nr', // rr
+  'nm', // mm
+  'np', // mp
+  'rl', // ll
+  'sf', // ff?
   'sh',
   'sl',
   'sm',
@@ -144,9 +149,9 @@ export const IMPOSSIBLE_CLUSTER = [
   'sv',
   'tc',
   'tf',
-  'th',
+  'th', // s
   'tl',
-  'tn',
+  'tn', // nt
   'tr',
   'yi',
 ];

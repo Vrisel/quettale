@@ -1,4 +1,5 @@
 import { MAX_WORD_LENGTH } from './settings';
+import { wordValidation } from './quenyaRule';
 
 /* // corpus from https://folk.uib.no/hnohf/qlist.htm
   const corpA = [];
@@ -409,7 +410,7 @@ const corpus = [
   'canasta',
   'cáne',
   'cáno',
-  'cansat',
+  // 'cansat',
   'canta',
   'cantea',
   'cantil',
@@ -460,7 +461,6 @@ const corpus = [
   'cautáron',
   'cé',
   'cea',
-  'cectele',
   'Celecorna',
   'celma',
   'celu',
@@ -606,7 +606,6 @@ const corpus = [
   'eces',
   'ecco',
   'ecet',
-  'ectele',
   'ecya',
   // 'effírie',
   'ehtar',
@@ -738,7 +737,7 @@ const corpus = [
   'Eruva',
   'erya',
   'es',
-  'esce',
+  // 'esce',
   'esse',
   'essea',
   'Esselda',
@@ -878,7 +877,7 @@ const corpus = [
   'forte',
   'forya',
   // In Quenya 'fu' sounds like 'hu'
-  'Fui',
+  /* 'Fui',
   'fuine',
   'Fuinur',
   'fúme',
@@ -886,8 +885,7 @@ const corpus = [
   'fúmellot',
   'funda',
   'furin',
-  'furu',
-  // 'fu' to 'hu'
+  'furu', */
   'hácala',
   'hacca',
   'hahta',
@@ -1479,7 +1477,7 @@ const corpus = [
   'Lórellin',
   'Lórien',
   'lorna',
-  'losca',
+  // 'losca',
   'losse',
   'lossea',
   'losselie',
@@ -1642,10 +1640,9 @@ const corpus = [
   'maxa',
   'maxe',
   'Máya',
-  'mbelek',
   'me',
   'mear',
-  'mectar',
+  'mehtar',
   'méla',
   'mélamar',
   'Melcor',
@@ -1884,7 +1881,7 @@ const corpus = [
   'néca',
   'necce',
   'necel',
-  'necte',
+  'nehte',
   'nehta',
   'nehtanō',
   'nehtar',
@@ -2149,7 +2146,7 @@ const corpus = [
   'oiala',
   'oiale',
   'oialea',
-  'oïcta',
+  // 'oïcta',
   'oiencarme Eruo',
   'oilima',
   'oio',
@@ -2877,7 +2874,6 @@ const corpus = [
   'taru',
   'tarucca',
   'tarucco',
-  'Taructarna',
   'Taruhtarna',
   'tarunco',
   'tarwa',
@@ -2938,9 +2934,8 @@ const corpus = [
   'telerea',
   'Telerin',
   'telerinwa',
-  'Telimbectar',
+  'Telumehtar',
   'telimbo',
-  'Telimectar',
   'tella',
   'telle',
   'telluma',
@@ -4022,5 +4017,5 @@ export const VERBS = [
 ];
 
 export const WORDS = corpus
-  .filter((e) => e.length === MAX_WORD_LENGTH && !e.endsWith('-'))
+  .filter((e) => e.length === MAX_WORD_LENGTH && wordValidation(e))
   .map((e) => e.toLocaleLowerCase());
