@@ -63,10 +63,11 @@ export const CONSONANTS = [
   's',
   'ss',
   // double
-  'll',
-  'rr',
-  'mm',
   'cc',
+  /* 'ff', // occurs only 'effir- */
+  'll',
+  'mm',
+  'rr',
   // -s, -y
   'ps',
   'ts',

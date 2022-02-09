@@ -608,7 +608,7 @@ const corpus = [
   'ecet',
   'ectele',
   'ecya',
-  'effírie',
+  // 'effírie',
   'ehtar',
   'ehte',
   'ehtele',
@@ -3638,6 +3638,7 @@ export const VERBS = [
   'ea-',
   'ecces-',
   'eccoita',
+  // 'effir-', // ff?
   'empanya-',
   'endaquet-',
   'enquanta-',
