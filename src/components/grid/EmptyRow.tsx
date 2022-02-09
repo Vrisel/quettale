@@ -1,8 +1,8 @@
-import { MAX_WORD_LENGTH } from '../../constants/settings'
-import { Cell } from './Cell'
+import { MAX_WORD_LENGTH } from '../../constants/settings';
+import { Cell } from './Cell';
 
 export const EmptyRow = () => {
-  const emptyCells = Array.from(Array(MAX_WORD_LENGTH))
+  const emptyCells = Array.from(Array(MAX_WORD_LENGTH));
 
   return (
     <div className="flex justify-center mb-1">
@@ -10,5 +10,5 @@ export const EmptyRow = () => {
         <Cell key={i} />
       ))}
     </div>
-  )
-}
+  );
+};
