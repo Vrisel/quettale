@@ -1952,7 +1952,7 @@ const corpus = [
   'neuro',
   'nexa',
   'néya',
-  'ngwen',
+  /* 'ngwen', */
   'ni',
   'ní',
   'níca',
@@ -2109,10 +2109,10 @@ const corpus = [
   'nútil',
   // 'núve',
   'nuxo',
-  'nwalca',
+  /* 'nwalca',
   'nwalma',
   'nwalme',
-  'nwin',
+  'nwin', */
   'nyano',
   'nyáre',
   'nyarna',
@@ -3820,7 +3820,7 @@ export const VERBS = [
   'núru-',
   'nut-',
   'núta-',
-  'nwalya-',
+  /* 'nwalya-', */
   'nyar-',
   'nyéna-',
   // 'ócama-',
