@@ -132,6 +132,8 @@ function App() {
         setCurrentGuess(`${currentGuess.slice(0, -1)}X`);
       } else if (currentGuess.slice(-1) === 'C' && value === 'W') {
         setCurrentGuess(`${currentGuess.slice(0, -1)}QU`);
+      } else if (currentGuess.slice(-1) === 'T' && value === 'H') {
+        setCurrentGuess(`${currentGuess.slice(0, -1)}S`);
       } else if (currentGuess.length < MAX_WORD_LENGTH) {
         if (['J', 'Z'].includes(value)) {
           setIsLetterUnusedAlertOpen(true);
