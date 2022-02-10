@@ -1,12 +1,11 @@
 import { getGuessStatuses } from './statuses';
-// import { solutionIndex } from './words';
+import { dayIndex } from './words';
 import { GAME_TITLE } from '../constants/strings';
 
 export const shareStatus = async (guesses: string[], lost: boolean) => {
   const shareText =
     `${GAME_TITLE}: 퀘냐 워들\n` +
-    // `${solutionIndex} ` +
-    `${lost ? 'X' : guesses.length}/6\n\n` +
+    `${dayIndex} ${lost ? 'X' : guesses.length}/6\n\n` +
     generateEmojiGrid(guesses);
   const shareUrl = 'https://quettale.vercel.app';
   if (
