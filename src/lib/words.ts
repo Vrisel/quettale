@@ -20,7 +20,7 @@ export const getWordOfDay = () => {
   const msInDay = 86400000;
   const dayIndex = Math.ceil((now - epochMs) / msInDay);
   const index = (dayIndex * (19730902 / 2)) % WORDS.length; // RIP Tolkien
-  const nextday = (dayIndex + 1) * msInDay + epochMs;
+  const nextday = dayIndex * msInDay + epochMs;
 
   return {
     solution: WORDS[index].toLocaleUpperCase(),
