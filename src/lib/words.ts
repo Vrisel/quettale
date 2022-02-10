@@ -14,19 +14,19 @@ export const isWinningWord = (word: string) => {
 };
 
 export const getWordOfDay = () => {
-  // January 1, 2022 Game Epoch
-  const epochMs = new Date('January 1, 2022 00:00:00').valueOf();
+  // February 10, 2022 Game Epoch
+  const epochMs = new Date('February 10, 2022 00:00:00').valueOf();
   const now = Date.now();
   const msInDay = 86400000;
-  const dayNumber = Math.floor((now - epochMs) / msInDay);
-  const index = (dayNumber * (19730902 / 2)) % WORDS.length; // RIP Tolkien
-  const nextday = (dayNumber + 1) * msInDay + epochMs;
+  const dayIndex = Math.ceil((now - epochMs) / msInDay);
+  const index = (dayIndex * (19730902 / 2)) % WORDS.length; // RIP Tolkien
+  const nextday = (dayIndex + 1) * msInDay + epochMs;
 
   return {
     solution: WORDS[index].toLocaleUpperCase(),
-    solutionIndex: index,
+    dayIndex: dayIndex,
     tomorrow: nextday,
   };
 };
 
-export const { solution, solutionIndex, tomorrow } = getWordOfDay();
+export const { solution, dayIndex, tomorrow } = getWordOfDay();
