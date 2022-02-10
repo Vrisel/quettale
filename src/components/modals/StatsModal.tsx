@@ -69,6 +69,7 @@ export const StatsModal = ({
             onClick={() => {
               shareStatus(guesses, isGameLost);
               handleShare();
+              handleClose();
             }}
           >
             {SHARE_TEXT}
