@@ -30,7 +30,7 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
         <Cell value="R" />
       </div>
       <p className="text-sm text-gray-500 dark:text-gray-300">
-        <Trans i18nkey="TEXT_CORRECT">
+        <Trans i18nKey="TEXT_CORRECT">
           Correct letter: {{ correctLetter: 'E' }}
         </Trans>
       </p>
