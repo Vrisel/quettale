@@ -4,11 +4,14 @@ import './index.css';
 import './locales/i18n';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { AlertProvider } from './context/AlertContext';
 
 ReactDOM.render(
   <React.StrictMode>
     <Suspense fallback="loading">
-      <App />
+      <AlertProvider>
+        <App />
+      </AlertProvider>
     </Suspense>
   </React.StrictMode>,
   document.getElementById('root')

@@ -78,7 +78,9 @@ export const CONSONANTS = [
   'hr',
   'hl',
   // -s
+  'ls',
   'ps',
+  'rs',
   'ts',
   'x', // cs
   // others
@@ -89,6 +91,7 @@ export const CONSONANTS = [
   'lqu',
   'lt',
   'mn',
+  'nv',
   'pt',
   'rc',
   'rqu',
@@ -111,6 +114,7 @@ export const INITIAL_CONSONANTS = [
   't',
   'v',
   'w',
+  'y',
   'nw',
   'qu',
   'hy',
@@ -154,6 +158,7 @@ export const IMPOSSIBLE_CLUSTER = [
   'tn', // nt
   'tr',
   'yi',
+  'yí',
 ];
 
 export function wordValidation(word: string): boolean {

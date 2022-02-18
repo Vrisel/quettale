@@ -7,11 +7,16 @@
   "TEXT_ABOUT_GAME": "이 게임에 관하여",
 
   "MESSAGES_WIN": ["굉장해요!", "완벽해요!", "잘했어요!"],
+  "MESSAGE_HARD_MODE_ALERT": "Hard Mode can only be enabled at the start!",
   "MESSAGE_GAME_COPIED": "복사되었습니다",
+  "MESSAGE_GAME_SHARED": "공유되었습니다",
+  "MESSAGE_GAME_SHARE_FAILED": "공유하지 못했습니다",
   "MESSAGE_NOT_ENOUGH_LETTERS": "글자 수가 모자랍니다",
   "MESSAGE_WORD_NOT_VALID": "퀘냐스럽지 않아요",
   "MESSAGE_UNUSED_LETTER": "J와 Z는 쓰이지 않아요",
   "MESSAGE_CORRECT_WORD": "정답은 {{solution}}였어요",
+  "MESSAGE_WRONG_SPOT": "{{guess}}을(를) {{position}}번째 자리에 사용해야 해요",
+  "MESSAGE_NOT_CONTAINED": "{{letter}}을(를) 꼭 넣고 맞히셔야 해요",
 
   "MODAL_INFO_TITLE": "게임방법",
   "TEXT_HOWTO": "오늘의 퀘냐 단어를 {{maxChallenges}}번의 시도 안에 맞혀보세요. 각 시도마다 각 칸의 색으로 정답에 얼마나 근접했는지를 알려드립니다.",
@@ -34,5 +39,10 @@
   "TEXT_CURRENT_STREAK": "현재 연승",
   "TEXT_BEST_STREAK": "최대 연승",
 
-  "SHARE_TITLE": "$t(GAME_TITLE): 퀘냐 워들"
+  "SHARE_TITLE": "$t(GAME_TITLE): 퀘냐 워들",
+
+  "MODAL_SETTINGS_TITLE": "설정",
+  "TEXT_HARD_MODE": "하드 모드",
+  "TEXT_DARK_MODE": "다크 모드",
+  "TEXT_HIGH_CONTRAST_MODE": "고대비 모드"
 }

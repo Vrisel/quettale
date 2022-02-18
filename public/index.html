@@ -5,17 +5,43 @@
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta name="description" content="Wordle for Quenya" />
+    <meta name="description" content="%REACT_APP_GAME_DESCRIPTION%" />
     <link rel="canonical" href="https://quettale.vercel.app/" />
     <meta name="og:type" content="website" />
     <meta name="og:locale" content="en" />
     <meta name="og:url" content="https://quettale.vercel.app" />
     <meta name="og:image" content="https://quettale.vercel.app/logo512.png" />
-    <meta name="og:title" content="Quettale" />
+    <meta name="og:title" content="%REACT_APP_GAME_NAME%" />
     <meta name="og:description" content="Wordle for Quenya" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <title>Quettale</title>
+    <title>%REACT_APP_GAME_NAME%</title>
+
+    <% if (process.env.NODE_ENV === 'production' &&
+    process.env.REACT_APP_GOOGLE_MEASUREMENT_ID != null) { %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=%REACT_APP_GOOGLE_MEASUREMENT_ID%"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', '%REACT_APP_GOOGLE_MEASUREMENT_ID%');
+    </script>
+    <% } %> <% if (process.env.NODE_ENV === 'production' &&
+    process.env.REACT_APP_PLAUSIBLE_DOMAIN != null) { %>
+    <!-- Plausible Analytics -->
+    <script
+      defer
+      data-domain="%REACT_APP_PLAUSIBLE_DOMAIN%"
+      src="https://plausible.io/js/plausible.js"
+    ></script>
+    <% } %>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

@@ -23,7 +23,12 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
       </p>
 
       <div className="flex justify-center mb-1 mt-4">
-        <Cell value="E" status="correct" />
+        <Cell
+          isRevealing={true}
+          isCompleted={true}
+          value="E"
+          status="correct"
+        />
         <Cell value="N" />
         <Cell value="D" />
         <Cell value="O" />
@@ -38,7 +43,12 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
       <div className="flex justify-center mb-1 mt-4">
         <Cell value="Y" />
         <Cell value="U" />
-        <Cell value="L" status="present" />
+        <Cell
+          isRevealing={true}
+          isCompleted={true}
+          value="L"
+          status="present"
+        />
         <Cell value="M" />
         <Cell value="A" />
       </div>
@@ -52,7 +62,7 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
         <Cell value="M" />
         <Cell value="Á" />
         <Cell value="R" />
-        <Cell value="I" status="absent" />
+        <Cell isRevealing={true} isCompleted={true} value="I" status="absent" />
         <Cell value="E" />
       </div>
       <p className="text-sm text-gray-500 dark:text-gray-300">
@@ -74,6 +84,17 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
           </a>
         </Trans>
       </p>
+
+      {/* <p className="mt-6 italic text-sm text-gray-500 dark:text-gray-300">
+        This is an open source version of the word guessing game we all know and
+        love -{' '}
+        <a
+          href="https://github.com/cwackerfuss/react-wordle"
+          className="underline font-bold"
+        >
+          check out the code here
+        </a>{' '}
+      </p> */}
     </BaseModal>
   );
 };
