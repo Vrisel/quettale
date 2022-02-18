@@ -1,22 +1,27 @@
 {
   "GAME_TITLE": "Quettale",
 
-  "MESSAGES_WIN": ["Great Job!", "Awesome", "Well done!"],
-  "MESSAGE_GAME_COPIED": "Game copied to clipboard",
+  "TEXT_ENTER": "Enter",
+  "TEXT_DELETE": "Delete",
+
   "TEXT_ABOUT_GAME": "About this game",
+
+  "MESSAGES_WIN": ["Great Job!", "Awesome", "Well done!"],
+  "MESSAGE_HARD_MODE_ALERT": "Hard Mode can only be enabled at the start!",
+  "MESSAGE_GAME_COPIED": "Game copied to clipboard",
   "MESSAGE_NOT_ENOUGH_LETTERS": "Not enough letters",
   "MESSAGE_WORD_NOT_VALID": "Word not Quenya-ish",
   "MESSAGE_UNUSED_LETTER": "Unused letter (J & Z)",
   "MESSAGE_CORRECT_WORD": "The word was <0>{{solution}}</0>",
-
-  "TEXT_ENTER": "Enter",
-  "TEXT_DELETE": "Delete",
+  "MESSAGE_WRONG_SPOT": "Must use {{guess}} in position {{position}}",
+  "MESSAGE_NOT_CONTAINED": "Guess must contain {{letter}}",
 
   "MODAL_INFO_TITLE": "How to play",
-  "TEXT_HOWTO": "Guess the word in {{MAX_CHALLENGE}} tries. After each guess, the color of the tiles will change to show how close your guess was to the word.",
+  "TEXT_HOWTO": "Guess the word in {{maxChallenges}} tries. After each guess, the color of the tiles will change to show how close your guess was to the word.",
   "TEXT_CORRECT": "The letter {{correctLetter}} is in the word and in the correct spot.",
   "TEXT_PRESENT": "The letter {{presentLetter}} is in the word but in the wrong spot.",
   "TEXT_ABSENT": "The letter {{absentLetter}} is not in the word in any spot.",
+  "TEXT_QUENYA": "You can <2>check Quenya rule here</2>.",
 
   "MODAL_ABOUT_TITLE": "About",
   "TEXT_INTRODUCTION": "This is a Quenya version of Wordle, made by <5>{{author}}</5>, cloned from <2>{{originalAuthor}}</2>'s source.",
@@ -32,5 +37,10 @@
   "TEXT_CURRENT_STREAK": "Current streak",
   "TEXT_BEST_STREAK": "Best streak",
 
-  "SHARE_TITLE": "$t(GAME_TITLE): Quenya Wordle"
+  "SHARE_TITLE": "$t(GAME_TITLE): Quenya Wordle",
+
+  "MODAL_SETTINGS_TITLE": "Settings",
+  "TEXT_HARD_MODE": "Hard Mode",
+  "TEXT_DARK_MODE": "Dark Mode",
+  "TEXT_HIGH_CONTRAST_MODE": "High Contrast Mode"
 }
