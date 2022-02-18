@@ -1,0 +1,38 @@
+{
+  "GAME_TITLE": "퀘탈레",
+
+  "TEXT_ENTER": "확인",
+  "TEXT_DELETE": "삭제",
+
+  "TEXT_ABOUT_GAME": "이 게임에 관하여",
+
+  "MESSAGES_WIN": ["굉장해요!", "완벽해요!", "잘했어요!"],
+  "MESSAGE_GAME_COPIED": "복사되었습니다",
+  "MESSAGE_NOT_ENOUGH_LETTERS": "글자 수가 모자랍니다",
+  "MESSAGE_WORD_NOT_VALID": "퀘냐스럽지 않아요",
+  "MESSAGE_UNUSED_LETTER": "J와 Z는 쓰이지 않아요",
+  "MESSAGE_CORRECT_WORD": "정답은 {{solution}}였어요",
+
+  "MODAL_INFO_TITLE": "게임방법",
+  "TEXT_HOWTO": "오늘의 퀘냐 단어를 {{maxChallenges}}번의 시도 안에 맞혀보세요. 각 시도마다 각 칸의 색으로 정답에 얼마나 근접했는지를 알려드립니다.",
+  "TEXT_CORRECT": "{{correctLetter}}가 정확한 위치에 있습니다.",
+  "TEXT_PRESENT": "{{presentLetter}}이 정답 내에 존재하지만 위치가 틀렸습니다.",
+  "TEXT_ABSENT": "{{absentLetter}}는 정답 내에 존재하지 않습니다.",
+  "TEXT_QUENYA": "자세한 퀘냐 규칙은 <2>여기서 확인해보세요!</2>",
+
+  "MODAL_ABOUT_TITLE": "이 게임은",
+  "TEXT_INTRODUCTION": "<5>{{author}}</5>이 <2>{{originalAuthor}}</2>의 소스를 클론하여 만든 퀘냐 워들(Wordle)입니다.",
+  "TEXT_ORIGINAL": "<2>{{originalAuthor}}의 원본 소스</2>를 확인하거나, <5>원조 워들</5>도 해보세요!",
+  "TEXT_CORPUS": "퀘냐 단어는 <2>{{Ardalambion}}</2>에서 수집하였습니다.",
+
+  "MODAL_STATISTICS_TITLE": "통계",
+  "TEXT_GUESS_DISTRIBUTION": "시도 회수 분포",
+  "TEXT_NEW_WORD": "새 문제까지",
+  "TEXT_SHARE": "공유하기",
+  "TEXT_TOTAL_TRIES": "총 시도 회수",
+  "TEXT_SUCCESS_RATE": "정답률",
+  "TEXT_CURRENT_STREAK": "현재 연승",
+  "TEXT_BEST_STREAK": "최대 연승",
+
+  "SHARE_TITLE": "$t(GAME_TITLE): 퀘냐 워들"
+}

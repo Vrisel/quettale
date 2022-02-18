@@ -1,0 +1,36 @@
+{
+  "GAME_TITLE": "Quettale",
+
+  "MESSAGES_WIN": ["Great Job!", "Awesome", "Well done!"],
+  "MESSAGE_GAME_COPIED": "Game copied to clipboard",
+  "TEXT_ABOUT_GAME": "About this game",
+  "MESSAGE_NOT_ENOUGH_LETTERS": "Not enough letters",
+  "MESSAGE_WORD_NOT_VALID": "Word not Quenya-ish",
+  "MESSAGE_UNUSED_LETTER": "Unused letter (J & Z)",
+  "MESSAGE_CORRECT_WORD": "The word was <0>{{solution}}</0>",
+
+  "TEXT_ENTER": "Enter",
+  "TEXT_DELETE": "Delete",
+
+  "MODAL_INFO_TITLE": "How to play",
+  "TEXT_HOWTO": "Guess the word in {{MAX_CHALLENGE}} tries. After each guess, the color of the tiles will change to show how close your guess was to the word.",
+  "TEXT_CORRECT": "The letter {{correctLetter}} is in the word and in the correct spot.",
+  "TEXT_PRESENT": "The letter {{presentLetter}} is in the word but in the wrong spot.",
+  "TEXT_ABSENT": "The letter {{absentLetter}} is not in the word in any spot.",
+
+  "MODAL_ABOUT_TITLE": "About",
+  "TEXT_INTRODUCTION": "This is a Quenya version of Wordle, made by <5>{{author}}</5>, cloned from <2>{{originalAuthor}}</2>'s source.",
+  "TEXT_ORIGINAL": "Check out <2>{{originalAuthor}}'s original code'</2>, or play <5>original Wordle</5>.",
+  "TEXT_CORPUS": "Quenya words were collected from <2>{{Ardalambion}}</2>.",
+
+  "MODAL_STATISTICS_TITLE": "Statistics",
+  "TEXT_GUESS_DISTRIBUTION": "Guess Distribution",
+  "TEXT_NEW_WORD": "New word in",
+  "TEXT_SHARE": "Share",
+  "TEXT_TOTAL_TRIES": "Total tries",
+  "TEXT_SUCCESS_RATE": "Success rate",
+  "TEXT_CURRENT_STREAK": "Current streak",
+  "TEXT_BEST_STREAK": "Best streak",
+
+  "SHARE_TITLE": "$t(GAME_TITLE): Quenya Wordle"
+}

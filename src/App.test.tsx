@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
-import { GAME_TITLE } from './constants/strings';
+import { t } from 'i18next';
 
 beforeEach(() => {
   Object.defineProperty(window, 'matchMedia', {
@@ -21,6 +21,6 @@ beforeEach(() => {
 
 test('renders App component', () => {
   render(<App />);
-  const linkElement = screen.getByText(GAME_TITLE);
+  const linkElement = screen.getByText(t('GAME_TITLE') as string);
   expect(linkElement).toBeInTheDocument();
 });

@@ -3,6 +3,7 @@ import {
   ChartBarIcon,
   SunIcon,
   MoonIcon,
+  GlobeAltIcon,
 } from '@heroicons/react/outline';
 import { useState, useEffect } from 'react';
 import { Alert } from './components/alerts/Alert';
@@ -11,16 +12,6 @@ import { Keyboard } from './components/keyboard/Keyboard';
 import { AboutModal } from './components/modals/AboutModal';
 import { InfoModal } from './components/modals/InfoModal';
 import { StatsModal } from './components/modals/StatsModal';
-import {
-  GAME_TITLE,
-  WIN_MESSAGES,
-  GAME_COPIED_MESSAGE,
-  ABOUT_GAME_MESSAGE,
-  NOT_ENOUGH_LETTERS_MESSAGE,
-  WORD_NOT_VALID_MESSAGE,
-  CORRECT_WORD_MESSAGE,
-  UNUSED_LETTER_MESSAGE,
-} from './constants/strings';
 import {
   MAX_WORD_LENGTH,
   MAX_CHALLENGES,
@@ -35,6 +26,8 @@ import {
 } from './lib/localStorage';
 
 import './App.css';
+import { useTranslation } from 'react-i18next';
+import { Language } from './locales/i18n';
 
 function App() {
   const prefersDarkMode = window.matchMedia(
@@ -76,6 +69,16 @@ function App() {
 
   const [stats, setStats] = useState(() => loadStats());
 
+  const { t, i18n } = useTranslation();
+  const handleChangeLanguage = (lang: Language) => {
+    i18n.changeLanguage(lang);
+  };
+
+  document.title = t('GAME_TITLE');
+  i18n.on('languageChanged', (lng) => {
+    document.documentElement.setAttribute('lang', lng);
+  });
+
   useEffect(() => {
     if (isDarkMode) {
       document.documentElement.classList.add('dark');
@@ -96,9 +99,8 @@ function App() {
   useEffect(() => {
     if (isGameWon) {
       setTimeout(() => {
-        setSuccessAlert(
-          WIN_MESSAGES[Math.floor(Math.random() * WIN_MESSAGES.length)]
-        );
+        const messages = t('MESSAGES_WIN', { returnObjects: true });
+        setSuccessAlert(messages[Math.floor(Math.random() * messages.length)]);
 
         setTimeout(() => {
           setSuccessAlert('');
@@ -111,6 +113,7 @@ function App() {
         setIsStatsModalOpen(true);
       }, ALERT_TIME_MS);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isGameWon, isGameLost]);
 
   const onChar = (value: string) => {
@@ -199,85 +202,102 @@ function App() {
   };
 
   return (
-    <div className="pt-2 pb-8 max-w-7xl mx-auto sm:px-6 lg:px-8">
-      <div className="flex w-80 mx-auto items-center mb-8 mt-4">
-        <h1 className="text-xl ml-2.5 grow font-bold dark:text-white">
-          {GAME_TITLE}
-        </h1>
-        {isDarkMode ? (
-          <SunIcon
+    <>
+      <div className="pt-2 pb-8 max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div className="flex w-80 mx-auto items-center mb-8 mt-4">
+          <h1 className="text-xl ml-2.5 grow font-bold dark:text-white">
+            {t('GAME_TITLE')}
+          </h1>
+          <GlobeAltIcon
             className="h-6 w-6 mr-2 cursor-pointer dark:stroke-white"
-            onClick={() => handleDarkMode(!isDarkMode)}
+            onClick={() =>
+              handleChangeLanguage(i18n.language === 'en' ? 'ko' : 'en')
+            }
           />
-        ) : (
-          <MoonIcon
-            className="h-6 w-6 mr-2 cursor-pointer"
-            onClick={() => handleDarkMode(!isDarkMode)}
+          {isDarkMode ? (
+            <SunIcon
+              className="h-6 w-6 mr-2 cursor-pointer dark:stroke-white"
+              onClick={() => handleDarkMode(!isDarkMode)}
+            />
+          ) : (
+            <MoonIcon
+              className="h-6 w-6 mr-2 cursor-pointer"
+              onClick={() => handleDarkMode(!isDarkMode)}
+            />
+          )}
+          <InformationCircleIcon
+            className="h-6 w-6 mr-2 cursor-pointer dark:stroke-white"
+            onClick={() => setIsInfoModalOpen(true)}
           />
-        )}
-        <InformationCircleIcon
-          className="h-6 w-6 mr-2 cursor-pointer dark:stroke-white"
-          onClick={() => setIsInfoModalOpen(true)}
+          <ChartBarIcon
+            className="h-6 w-6 mr-3 cursor-pointer dark:stroke-white"
+            onClick={() => setIsStatsModalOpen(true)}
+          />
+        </div>
+        <Grid
+          guesses={guesses}
+          currentGuess={currentGuess}
+          isRevealing={isRevealing}
         />
-        <ChartBarIcon
-          className="h-6 w-6 mr-3 cursor-pointer dark:stroke-white"
-          onClick={() => setIsStatsModalOpen(true)}
+        <Keyboard
+          onChar={onChar}
+          onDelete={onDelete}
+          onEnter={onEnter}
+          guesses={guesses}
+          isRevealing={isRevealing}
+        />
+        <InfoModal
+          isOpen={isInfoModalOpen}
+          handleClose={() => setIsInfoModalOpen(false)}
+        />
+        <StatsModal
+          isOpen={isStatsModalOpen}
+          handleClose={() => setIsStatsModalOpen(false)}
+          guesses={guesses}
+          gameStats={stats}
+          isGameLost={isGameLost}
+          isGameWon={isGameWon}
+          handleShare={() => {
+            setSuccessAlert(t('MESSAGE_GAME_COPIED'));
+            return setTimeout(() => setSuccessAlert(''), ALERT_TIME_MS);
+          }}
+        />
+        <AboutModal
+          isOpen={isAboutModalOpen}
+          handleClose={() => setIsAboutModalOpen(false)}
+        />
+
+        <button
+          type="button"
+          className="mx-auto mt-8 flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 select-none"
+          onClick={() => setIsAboutModalOpen(true)}
+        >
+          {t('TEXT_ABOUT_GAME')}
+        </button>
+
+        <Alert
+          message={t('MESSAGE_NOT_ENOUGH_LETTERS')}
+          isOpen={isNotEnoughLetters}
+        />
+        <Alert
+          message={t('MESSAGE_UNUSED_LETTER')}
+          isOpen={isLetterUnusedAlertOpen}
+        />
+        <Alert
+          message={t('MESSAGE_WORD_NOT_VALID')}
+          isOpen={isWordNotValidAlertOpen}
+        />
+        <Alert
+          message={t('MESSAGE_CORRECT_WORD', { solution })}
+          isOpen={isGameLost}
+        />
+        <Alert
+          message={successAlert}
+          isOpen={successAlert !== ''}
+          variant="success"
         />
       </div>
-      <Grid
-        guesses={guesses}
-        currentGuess={currentGuess}
-        isRevealing={isRevealing}
-      />
-      <Keyboard
-        onChar={onChar}
-        onDelete={onDelete}
-        onEnter={onEnter}
-        guesses={guesses}
-        isRevealing={isRevealing}
-      />
-      <InfoModal
-        isOpen={isInfoModalOpen}
-        handleClose={() => setIsInfoModalOpen(false)}
-      />
-      <StatsModal
-        isOpen={isStatsModalOpen}
-        handleClose={() => setIsStatsModalOpen(false)}
-        guesses={guesses}
-        gameStats={stats}
-        isGameLost={isGameLost}
-        isGameWon={isGameWon}
-        handleShare={() => {
-          setSuccessAlert(GAME_COPIED_MESSAGE);
-          return setTimeout(() => setSuccessAlert(''), ALERT_TIME_MS);
-        }}
-      />
-      <AboutModal
-        isOpen={isAboutModalOpen}
-        handleClose={() => setIsAboutModalOpen(false)}
-      />
-
-      <button
-        type="button"
-        className="mx-auto mt-8 flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 select-none"
-        onClick={() => setIsAboutModalOpen(true)}
-      >
-        {ABOUT_GAME_MESSAGE}
-      </button>
-
-      <Alert message={NOT_ENOUGH_LETTERS_MESSAGE} isOpen={isNotEnoughLetters} />
-      <Alert message={UNUSED_LETTER_MESSAGE} isOpen={isLetterUnusedAlertOpen} />
-      <Alert
-        message={WORD_NOT_VALID_MESSAGE}
-        isOpen={isWordNotValidAlertOpen}
-      />
-      <Alert message={CORRECT_WORD_MESSAGE(solution)} isOpen={isGameLost} />
-      <Alert
-        message={successAlert}
-        isOpen={successAlert !== ''}
-        variant="success"
-      />
-    </div>
+    </>
   );
 }
 
