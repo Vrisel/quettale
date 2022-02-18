@@ -4,13 +4,12 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import en from './en.json';
 import ko from './ko.json';
 
-export const languages = ['en', 'ko', 'ko-KR'] as const;
+export const languages = ['en', 'ko'] as const;
 export type Language = typeof languages[number];
 
 export const resources = {
-  'en': { translation: en },
-  'ko': { translation: ko },
-  'ko-KR': { translation: ko },
+  en: { translation: en },
+  ko: { translation: ko },
 };
 
 i18n
@@ -18,7 +17,14 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    fallbackLng: 'en',
+    fallbackLng: {
+      'ko-KR': ['ko'],
+      'default': ['en'],
+    },
+    detection: {
+      order: ['cookie', 'localStorage', 'sessionStorage', 'navigator'],
+      htmlTag: document.documentElement,
+    },
     debug: process.env.NODE_ENV !== 'production',
 
     interpolation: {

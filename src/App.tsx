@@ -3,6 +3,7 @@ import {
   ChartBarIcon,
   SunIcon,
   MoonIcon,
+  GlobeAltIcon,
 } from '@heroicons/react/outline';
 import { useState, useEffect } from 'react';
 import { Alert } from './components/alerts/Alert';
@@ -25,9 +26,8 @@ import {
 } from './lib/localStorage';
 
 import './App.css';
-import { BrowserRouter } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-// import { Language } from './locales/i18n';
+import { Language } from './locales/i18n';
 
 function App() {
   const prefersDarkMode = window.matchMedia(
@@ -69,10 +69,15 @@ function App() {
 
   const [stats, setStats] = useState(() => loadStats());
 
-  const { t /* i18n */ } = useTranslation();
-  /* const handleChangeLanguage = (lang: Language) => {
+  const { t, i18n } = useTranslation();
+  const handleChangeLanguage = (lang: Language) => {
     i18n.changeLanguage(lang);
-  }; */
+  };
+
+  document.title = t('GAME_TITLE');
+  i18n.on('languageChanged', (lng) => {
+    document.documentElement.setAttribute('lang', lng);
+  });
 
   useEffect(() => {
     if (isDarkMode) {
@@ -197,12 +202,18 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
+    <>
       <div className="pt-2 pb-8 max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div className="flex w-80 mx-auto items-center mb-8 mt-4">
           <h1 className="text-xl ml-2.5 grow font-bold dark:text-white">
             {t('GAME_TITLE')}
           </h1>
+          <GlobeAltIcon
+            className="h-6 w-6 mr-2 cursor-pointer dark:stroke-white"
+            onClick={() =>
+              handleChangeLanguage(i18n.language === 'en' ? 'ko' : 'en')
+            }
+          />
           {isDarkMode ? (
             <SunIcon
               className="h-6 w-6 mr-2 cursor-pointer dark:stroke-white"
@@ -286,7 +297,7 @@ function App() {
           variant="success"
         />
       </div>
-    </BrowserRouter>
+    </>
   );
 }
 
