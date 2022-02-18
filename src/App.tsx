@@ -328,17 +328,11 @@ function App() {
         handleShare={(result: string) => {
           switch (result) {
             case 'copied':
-              return showSuccessAlert(t('MESSAGE_GAME_COPIED'), {
-                delayMs: ALERT_TIME_MS,
-              });
+              return showSuccessAlert(t('MESSAGE_GAME_COPIED'));
             case 'shared':
-              return showSuccessAlert(t('MESSAGE_GAME_SHARED'), {
-                delayMs: ALERT_TIME_MS,
-              });
+              return showSuccessAlert(t('MESSAGE_GAME_SHARED'));
             case 'failed':
-              return showErrorAlert(t('MESSAGE_GAME_SHARE_FAILED'), {
-                delayMs: ALERT_TIME_MS,
-              });
+              return showErrorAlert(t('MESSAGE_GAME_SHARE_FAILED'));
             default:
               return;
           }
