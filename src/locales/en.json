@@ -21,7 +21,7 @@
   "MODAL_ABOUT_TITLE": "About",
   "TEXT_INTRODUCTION": "This is a Quenya version of Wordle, made by <5>{{author}}</5>, cloned from <2>{{originalAuthor}}</2>'s source.",
   "TEXT_ORIGINAL": "Check out <2>{{originalAuthor}}'s original code'</2>, or play <5>original Wordle</5>.",
-  "TEXT_COPULA": "Quenya words were collected from <2>{{Ardalambion}}</2>.",
+  "TEXT_CORPUS": "Quenya words were collected from <2>{{Ardalambion}}</2>.",
 
   "MODAL_STATISTICS_TITLE": "Statistics",
   "TEXT_GUESS_DISTRIBUTION": "Guess Distribution",

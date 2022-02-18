@@ -65,8 +65,8 @@ export const AboutModal = ({ isOpen, handleClose }: Props) => {
           </a>
         </Trans>
         <br />
-        <Trans i18nKey="TEXT_COPULA">
-          Copula from:{' '}
+        <Trans i18nKey="TEXT_CORPUS">
+          Corpus from:{' '}
           <a
             href="https://folk.uib.no/hnohf/"
             className="underline font-bold"

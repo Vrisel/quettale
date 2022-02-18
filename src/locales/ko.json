@@ -23,7 +23,7 @@
   "MODAL_ABOUT_TITLE": "이 게임은",
   "TEXT_INTRODUCTION": "<5>{{author}}</5>이 <2>{{originalAuthor}}</2>의 소스를 클론하여 만든 퀘냐 워들(Wordle)입니다.",
   "TEXT_ORIGINAL": "<2>{{originalAuthor}}의 원본 소스</2>를 확인하거나, <5>원조 워들</5>도 해보세요!",
-  "TEXT_COPULA": "퀘냐 단어는 <2>{{Ardalambion}}</2>에서 수집하였습니다.",
+  "TEXT_CORPUS": "퀘냐 단어는 <2>{{Ardalambion}}</2>에서 수집하였습니다.",
 
   "MODAL_STATISTICS_TITLE": "통계",
   "TEXT_GUESS_DISTRIBUTION": "시도 회수 분포",
