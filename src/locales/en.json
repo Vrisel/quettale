@@ -9,6 +9,8 @@
   "MESSAGES_WIN": ["Great Job!", "Awesome", "Well done!"],
   "MESSAGE_HARD_MODE_ALERT": "Hard Mode can only be enabled at the start!",
   "MESSAGE_GAME_COPIED": "Game copied to clipboard",
+  "MESSAGE_GAME_SHARED": "Successfully shared",
+  "MESSAGE_GAME_SHARE_FAILED": "Share failed",
   "MESSAGE_NOT_ENOUGH_LETTERS": "Not enough letters",
   "MESSAGE_WORD_NOT_VALID": "Word not Quenya-ish",
   "MESSAGE_UNUSED_LETTER": "Unused letter (J & Z)",

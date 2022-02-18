@@ -4,7 +4,7 @@ import { t } from 'i18next';
 import { getStoredIsHighContrastMode } from './localStorage';
 import { MAX_CHALLENGES } from '../constants/settings';
 
-export const shareStatus = async (
+export const shareStatus = (
   guesses: string[],
   lost: boolean,
   isHardMode: boolean
@@ -20,11 +20,19 @@ export const shareStatus = async (
     typeof navigator.share !== 'undefined' &&
     /[Ww]indows?/.test(navigator.userAgent) === false
   )
-    await navigator.share({
-      text: shareText,
-      url: shareUrl,
-    });
-  else navigator.clipboard.writeText(`${shareText}\n\n${shareUrl}`);
+    return navigator
+      .share({
+        text: shareText,
+        url: shareUrl,
+      })
+      .then(() => 'shared')
+      .catch(() => 'failed');
+  else {
+    return navigator.clipboard
+      .writeText(`${shareText}\n\n${shareUrl}`)
+      .then(() => 'copied')
+      .catch(() => 'failed');
+  }
 };
 
 export const generateEmojiGrid = (guesses: string[]) => {

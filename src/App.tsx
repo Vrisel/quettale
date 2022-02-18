@@ -324,8 +324,25 @@ function App() {
         gameStats={stats}
         isGameLost={isGameLost}
         isGameWon={isGameWon}
-        handleShare={() => showSuccessAlert(t('MESSAGE_GAME_COPIED'))}
         isHardMode={isHardMode}
+        handleShare={(result: string) => {
+          switch (result) {
+            case 'copied':
+              return showSuccessAlert(t('MESSAGE_GAME_COPIED'), {
+                delayMs: ALERT_TIME_MS,
+              });
+            case 'shared':
+              return showSuccessAlert(t('MESSAGE_GAME_SHARED'), {
+                delayMs: ALERT_TIME_MS,
+              });
+            case 'failed':
+              return showErrorAlert(t('MESSAGE_GAME_SHARE_FAILED'), {
+                delayMs: ALERT_TIME_MS,
+              });
+            default:
+              return;
+          }
+        }}
       />
       <SettingsModal
         isOpen={isSettingsModalOpen}

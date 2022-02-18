@@ -9,6 +9,8 @@
   "MESSAGES_WIN": ["굉장해요!", "완벽해요!", "잘했어요!"],
   "MESSAGE_HARD_MODE_ALERT": "Hard Mode can only be enabled at the start!",
   "MESSAGE_GAME_COPIED": "복사되었습니다",
+  "MESSAGE_GAME_SHARED": "공유되었습니다",
+  "MESSAGE_GAME_SHARE_FAILED": "공유하지 못했습니다",
   "MESSAGE_NOT_ENOUGH_LETTERS": "글자 수가 모자랍니다",
   "MESSAGE_WORD_NOT_VALID": "퀘냐스럽지 않아요",
   "MESSAGE_UNUSED_LETTER": "J와 Z는 쓰이지 않아요",
