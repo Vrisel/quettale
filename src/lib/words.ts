@@ -1,6 +1,7 @@
 import { WORDS } from '../constants/wordlist';
 import { wordValidation } from '../constants/quenyaRule';
 import { getGuessStatuses } from './statuses';
+import { default as GraphemeSplitter } from 'grapheme-splitter';
 import { t } from 'i18next';
 
 export const isWordInWordList = (word: string) => {
@@ -26,12 +27,14 @@ export const findFirstUnusedReveal = (word: string, guesses: string[]) => {
   const lettersLeftArray = new Array<string>();
   const guess = guesses[guesses.length - 1];
   const statuses = getGuessStatuses(guess);
+  const splitWord = unicodeSplit(word);
+  const splitGuess = unicodeSplit(guess);
 
-  for (let i = 0; i < guess.length; i++) {
+  for (let i = 0; i < splitGuess.length; i++) {
     if (statuses[i] === 'correct' || statuses[i] === 'present') {
-      lettersLeftArray.push(guess[i]);
+      lettersLeftArray.push(splitGuess[i]);
     }
-    if (statuses[i] === 'correct' && word[i] !== guess[i]) {
+    if (statuses[i] === 'correct' && splitWord[i] !== splitGuess[i]) {
       return t('MESSAGE_WRONG_SPOT', { guess: guess[i], position: i + 1 });
     }
   }
@@ -39,7 +42,7 @@ export const findFirstUnusedReveal = (word: string, guesses: string[]) => {
   // check for the first unused letter, taking duplicate letters
   // into account - see issue #198
   let n;
-  for (const letter of word) {
+  for (const letter of splitWord) {
     n = lettersLeftArray.indexOf(letter);
     if (n !== -1) {
       lettersLeftArray.splice(n, 1);
@@ -52,6 +55,26 @@ export const findFirstUnusedReveal = (word: string, guesses: string[]) => {
   return false;
 };
 
+export const unicodeSplit = (word: string) => {
+  return new GraphemeSplitter().splitGraphemes(word);
+};
+
+export const unicodeLength = (word: string) => {
+  return unicodeSplit(word).length;
+};
+
+export const localeAwareLowerCase = (text: string) => {
+  return process.env.REACT_APP_LOCALE_STRING
+    ? text.toLocaleLowerCase(process.env.REACT_APP_LOCALE_STRING)
+    : text.toLowerCase();
+};
+
+export const localeAwareUpperCase = (text: string) => {
+  return process.env.REACT_APP_LOCALE_STRING
+    ? text.toLocaleUpperCase(process.env.REACT_APP_LOCALE_STRING)
+    : text.toUpperCase();
+};
+
 const fibResult: number[] = [34, 55];
 const fibonacci = (index: number): number => {
   if (!fibResult[index]) {
@@ -60,7 +83,11 @@ const fibonacci = (index: number): number => {
   return fibResult[index];
 };
 
-export const getWordOfDay = () => {
+export const getWordOfDay: () => {
+  solution: string;
+  dayIndex: number;
+  tomorrow: number;
+} = () => {
   // February 10, 2022 Game Epoch
   const epochMs = new Date('February 10, 2022 00:00:00').valueOf();
   const now = Date.now();
@@ -70,7 +97,7 @@ export const getWordOfDay = () => {
   const nextday = dayIndex * msInDay + epochMs;
 
   return {
-    solution: WORDS[index].toLocaleUpperCase(),
+    solution: localeAwareUpperCase(WORDS[index]),
     dayIndex: dayIndex,
     tomorrow: nextday,
   };

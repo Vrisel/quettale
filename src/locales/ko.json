@@ -7,7 +7,7 @@
   "TEXT_ABOUT_GAME": "이 게임에 관하여",
 
   "MESSAGES_WIN": ["굉장해요!", "완벽해요!", "잘했어요!"],
-  "MESSAGE_HARD_MODE_ALERT": "Hard Mode can only be enabled at the start!",
+  "MESSAGE_HARD_MODE_ALERT": "하드 모드는 게임을 시작하기 전에만 활성화할 수 있습니다",
   "MESSAGE_GAME_COPIED": "복사되었습니다",
   "MESSAGE_GAME_SHARED": "공유되었습니다",
   "MESSAGE_GAME_SHARE_FAILED": "공유하지 못했습니다",
@@ -43,6 +43,8 @@
 
   "MODAL_SETTINGS_TITLE": "설정",
   "TEXT_HARD_MODE": "하드 모드",
+  "TEXT_HARD_MODE_DESCRIPTION": "알아낸 힌트를 반드시 사용해야 합니다",
   "TEXT_DARK_MODE": "다크 모드",
-  "TEXT_HIGH_CONTRAST_MODE": "고대비 모드"
+  "TEXT_HIGH_CONTRAST_MODE": "고대비 모드",
+  "TEXT_HIGH_CONTRAST_MODE_DESCRIPTION": "색상 대비 향상"
 }

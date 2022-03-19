@@ -1,6 +1,7 @@
 import { getStatuses } from '../../lib/statuses';
 import { Key } from './Key';
 import { useEffect } from 'react';
+import { localeAwareUpperCase } from '../../lib/words';
 import { useTranslation } from 'react-i18next';
 
 type Props = {
@@ -37,7 +38,8 @@ export const Keyboard = ({
       } else if (e.code === 'Backspace') {
         onDelete();
       } else {
-        const key = e.key.toLocaleUpperCase();
+        const key = localeAwareUpperCase(e.key);
+        // TODO: check this test if the range works with non-english letters
         if (key.length === 1 && key >= 'A' && key <= 'Z') {
           onChar(key);
         }
