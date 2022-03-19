@@ -30,11 +30,12 @@ export const SettingsModal = ({
       isOpen={isOpen}
       handleClose={handleClose}
     >
-      <div className="grid-cols-2 gap-4">
+      <div className="flex flex-col mt-2 divide-y">
         <SettingsToggle
           settingName={t('TEXT_HARD_MODE')}
           flag={isHardMode}
           handleFlag={handleHardMode}
+          description={t('TEXT_HARD_MODE_DESCRIPTION')}
         />
         <SettingsToggle
           settingName={t('TEXT_DARK_MODE')}
@@ -45,6 +46,7 @@ export const SettingsModal = ({
           settingName={t('TEXT_HIGH_CONTRAST_MODE')}
           flag={isHighContrastMode}
           handleFlag={handleHighContrastMode}
+          description={t('TEXT_HIGH_CONTRAST_MODE_DESCRIPTION')}
         />
       </div>
     </BaseModal>
